@@ -83,7 +83,18 @@ async function call() {
   if (audioTracks.length > 0) {
     console.log(`Using audio device: ${audioTracks[0].label}`);
   }
-  const configuration = {};
+  const configuration = {
+     iceServers: [
+    {
+      urls: "stun:129.146.139.113:3478",
+    },
+    {
+      urls: "turn:129.146.139.113:3478",
+      username: "test", // Your TURN server username
+      credential: "test123", // Your TURN server password
+    },
+  ],
+  };
   console.log('RTCPeerConnection configuration:', configuration);
   pc1 = new RTCPeerConnection(configuration);
   console.log('Created local peer connection object pc1');
